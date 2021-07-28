@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Sorteo;
 
 class SorteosController extends Controller
 {
@@ -11,9 +12,21 @@ class SorteosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view ('sorteos.index');
+        $sorteos = Sorteo::query();
+        if ($request->has('nombre') && $request->nombre) {
+            $sorteos->where('nombre', $request->nombre);
+        }
+
+        if ($request->has('date') && $request->fecha) {
+            $sorteos->where('date', $request->fecha);
+        }
+
+        if ($request->has('hour') && $request->hora) {
+            $courses->where('hour', $request->hora);
+        }
+        return view('sorteos.index', ['sorteos' => $sorteos->orderBy('id')->paginate(5)]);
     }
 
     /**
@@ -23,7 +36,7 @@ class SorteosController extends Controller
      */
     public function create()
     {
-        //
+        return view ('sorteos.create');
     }
 
     /**
@@ -34,7 +47,8 @@ class SorteosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Sorteo::create($request->all());
+        return redirect ('/sorteos');
     }
 
     /**
@@ -45,7 +59,8 @@ class SorteosController extends Controller
      */
     public function show($id)
     {
-        //
+        $sorteo = Sorteo::find($id);
+        return view('sorteos.show', ['sorteo' => $sorteo]);
     }
 
     /**
@@ -56,7 +71,8 @@ class SorteosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sorteo = Sorteo::find($id);
+        return view('sorteos.edit', ['sorteo' => $sorteo]);
     }
 
     /**
@@ -68,7 +84,9 @@ class SorteosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sorteo = Sorteo::find($id);
+        $sorteo->update($request->all());
+        return redirect('/sorteos');
     }
 
     /**
@@ -79,6 +97,7 @@ class SorteosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Sorteo::destroy($id);
+        return redirect('/sorteos');
     }
 }

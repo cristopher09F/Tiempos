@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+
 use App\Http\Controllers\SorteosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,4 +27,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-Route::resource ('sorteos',SorteosController::class);
+Route::resource('sorteos', SorteosController::class);
