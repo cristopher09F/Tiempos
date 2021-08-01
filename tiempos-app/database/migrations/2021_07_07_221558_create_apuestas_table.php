@@ -15,10 +15,8 @@ class CreateApuestasTable extends Migration
     {
         Schema::create('apuestas', function (Blueprint $table) {
             $table->id();
-            $table->id();
             $table->integer('numero');
             $table->integer('monto');
-            $table->id();
             $table->timestamps();
         });
     }
