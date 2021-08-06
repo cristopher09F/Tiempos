@@ -5,32 +5,37 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-
-
-        <a href="/sorteos/create">New Sorteo</a>
-
+    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
         <form method="GET" action="/sorteos">
-          <label>Name:</label>
-          <input class="form-input px-4 py-3 rounded-full" type="text" name="name" autofocus value="{{request()->get('nombre')}}" >
+          <label>Nombre:</label>
+          <input type="text" name="name" autofocus value="{{request()->get('nombre')}}" >
           <br>
-          <label>Date:</label>
-          <input type="date" name="fecha" value="{{request()->get('fecha')}}">
           <br>
-          <label>Hour:</label>
-          <input type="text" name="hour" value="{{request()->get('hora')}}">
+          <label>Fecha:</label>
+          &nbsp;
+          <input style="width:230px;position:absolute; left: 10%; top: 36%;" type="date" name="fecha" value="{{request()->get('fecha')}}">
           <br>
-          <input type="submit" value="Filter">
+          <br>
+          <label>Hora:</label>
+          &nbsp;
+          <input style=" width:230px; position:absolute; left: 10%; top: 44%; " type="text" name="hour" value="{{request()->get('hora')}}">
+          <br>
+          <br>
+          <br>
+          <button style=" width:79px; position:absolute; left: 21%;"  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+           Crear
+          </button>
+          <br><br><br>
         </form>
 
 
-        <table class="min-w-full divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-200 col text-center">
           <thead class="bg-gray-50">
             <tr>
-              <th>id</th>
-              <th>nombre</th>
-              <th>fecha</th>
-              <th>hora</th>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Fecha</th>
+              <th>Hora</th>
               <th></th>
             </tr>
           </thead>
